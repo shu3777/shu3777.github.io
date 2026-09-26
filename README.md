@@ -1,19 +1,21 @@
 # shu3777.github.io
 
-A lightweight academic homepage built with plain HTML and CSS. No build step or dependencies are required.
+A lightweight academic homepage built with plain HTML, CSS, and JavaScript. No build step or dependencies are required.
 
 ## What's included
 
 - Responsive sections for an introduction, research interests, publications, selected projects, and contact.
 - Project information based on the public repositories of [@shu3777](https://github.com/shu3777).
 - An empty publication section that can be updated when there is work to share.
+- Subtle scroll and hover effects, with reduced-motion support.
 
 ## Editing the site
 
 1. Update the text, project links, and page metadata in `index.html`.
 2. Adjust colors and layout in `styles.css`.
-3. Replace the GitHub avatar URL in `index.html` with a local portrait if preferred.
-4. Add verified publications, affiliations, and contact details when ready.
+3. Adjust interactive effects in `script.js`.
+4. Replace the GitHub avatar URL in `index.html` with a local portrait if preferred.
+5. Add verified publications, affiliations, and contact details when ready.
 
 ## Local preview
 
