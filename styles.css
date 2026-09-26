@@ -1,6 +1,8 @@
 :root {
   --paper:#f4f6fb;
   --white:#ffffff;
+  --surface:#ffffffcc;
+  --surface-strong:#ffffffee;
   --ink:#1b2234;
   --muted:#66708b;
   --line:#d9e1f0;
@@ -9,6 +11,8 @@
   --accent-wash:#edf0ff;
   --accent-soft:#cad4ff;
   --accent-glow:rgba(90,108,255,.26);
+  --shadow-soft:0 16px 40px rgba(31,41,77,.08);
+  --shadow-strong:0 20px 46px rgba(90,108,255,.2);
   --serif:Georgia,"Noto Serif SC","Songti SC",serif;
   --sans:Inter,"PingFang SC","Microsoft YaHei",sans-serif
 }
@@ -21,7 +25,10 @@ html {
 }
 body {
   margin:0;
-  background:var(--paper);
+  background:
+    radial-gradient(circle at 10% 15%,rgba(90,108,255,.08),transparent 32%),
+    radial-gradient(circle at 90% 80%,rgba(66,199,241,.09),transparent 34%),
+    var(--paper);
   color:var(--ink);
   font:16px/1.75 var(--sans);
   -webkit-font-smoothing:antialiased;
@@ -88,14 +95,15 @@ a:focus-visible {
   position:sticky;
   top:0;
   z-index:10;
-  border-bottom:1px solid var(--line);
-  background:rgba(244,246,251,.82);
+  border-bottom:1px solid rgba(193,205,235,.75);
+  background:rgba(244,246,251,.72);
   backdrop-filter:blur(16px);
   -webkit-backdrop-filter:blur(16px);
-  transition:box-shadow .25s ease
+  transition:box-shadow .25s ease,background .25s ease
 }
 .site-header.is-scrolled {
-  box-shadow:0 12px 30px rgba(31,41,77,.1)
+  box-shadow:0 12px 30px rgba(31,41,77,.1);
+  background:rgba(244,246,251,.86)
 }
 .scroll-progress {
   position:absolute;
@@ -165,8 +173,9 @@ a:focus-visible {
 }
 .header-link {
   border:1px solid #c5d0ee;
-  border-radius:3px;
+  border-radius:999px;
   padding:7px 14px;
+  background:var(--surface-strong);
   white-space:nowrap
 }
 .header-link span {
@@ -260,9 +269,9 @@ h1,h2,h3,p {
 .button-primary {
   padding:10px 20px;
   background:linear-gradient(120deg,var(--accent),#658fff);
-  border-radius:3px;
+  border-radius:999px;
   color:#fff;
-  box-shadow:0 12px 30px rgba(90,108,255,.28);
+  box-shadow:var(--shadow-strong);
   transition:background .2s,transform .2s,box-shadow .2s
 }
 .button-primary:hover {
@@ -282,9 +291,10 @@ h1,h2,h3,p {
 .portrait-card {
   position:relative;
   padding:34px;
-  background:linear-gradient(140deg,#eef2ff,#e9f7ff 86%);
+  background:linear-gradient(140deg,#f2f5ff,#edf9ff 86%);
   border:1px solid #d6def7;
-  box-shadow:16px 16px 0 #e5ebfa
+  border-radius:24px;
+  box-shadow:var(--shadow-soft)
 }
 .portrait-card:before {
   content:"";
@@ -294,6 +304,7 @@ h1,h2,h3,p {
   right:16px;
   bottom:16px;
   border:1px solid rgba(90,108,255,.18);
+  border-radius:16px;
   pointer-events:none
 }
 .portrait-card img {
@@ -301,6 +312,7 @@ h1,h2,h3,p {
   width:100%;
   aspect-ratio:1;
   object-fit:cover;
+  border-radius:16px;
   filter:grayscale(18%);
   background:#cbd8cf
 }
@@ -429,7 +441,9 @@ h1,h2,h3,p {
   min-height:256px;
   background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(90,108,255,.13),transparent 72%),var(--white);
   border:1px solid var(--line);
+  border-radius:18px;
   padding:24px 21px;
+  box-shadow:0 10px 26px rgba(31,41,77,.04);
   transition:border-color .25s,transform .25s,box-shadow .25s
 }
 .interest-card:hover {
@@ -467,8 +481,9 @@ h1,h2,h3,p {
   gap:24px;
   align-items:flex-start;
   padding:33px;
-  background:var(--accent-wash);
-  border:1px solid #d7def6
+  background:linear-gradient(135deg,var(--accent-wash),#f4f7ff);
+  border:1px solid #d7def6;
+  border-radius:18px
 }
 .empty-mark {
   font-family:var(--serif);
@@ -495,6 +510,7 @@ h1,h2,h3,p {
 .project {
   padding:26px 0 30px;
   border-bottom:1px solid var(--line);
+  border-radius:14px;
   transition:transform .24s ease,background .24s ease,box-shadow .24s ease
 }
 .project:hover {
@@ -552,6 +568,7 @@ h1,h2,h3,p {
   font-size:11px;
   color:#556281;
   background:#e8edff;
+  border-radius:999px;
   padding:4px 9px
 }
 .all-projects {
@@ -569,7 +586,7 @@ h1,h2,h3,p {
   color:var(--accent-dark)
 }
 .contact-section {
-  background:linear-gradient(135deg,#ebefff,#e8f7ff 86%);
+  background:linear-gradient(135deg,#eef2ff,#eaf8ff 86%);
   margin-top:0;
   padding:86px 0
 }
@@ -577,7 +594,11 @@ h1,h2,h3,p {
   display:flex;
   align-items:end;
   justify-content:space-between;
-  gap:35px
+  gap:35px;
+  background:var(--surface-strong);
+  border:1px solid #d4ddf5;
+  border-radius:20px;
+  padding:32px
 }
 .contact-inner h2 {
   margin-bottom:17px
@@ -615,7 +636,8 @@ h1,h2,h3,p {
 }
 .site-footer {
   background:#151c31;
-  color:#d5def5
+  color:#d5def5;
+  border-top:1px solid rgba(178,192,230,.2)
 }
 .footer-inner {
   min-height:96px;
@@ -816,12 +838,47 @@ h1,h2,h3,p {
 }
 .motion-ready .reveal {
   opacity:0;
-  translate:0 22px;
-  transition:opacity .7s ease,translate .7s cubic-bezier(.22,1,.36,1)
+  transform:translate3d(0,var(--reveal-offset,26px),0) scale(var(--reveal-scale,.98)) rotateX(var(--reveal-rotate-x,0deg)) rotateY(var(--reveal-rotate-y,0deg));
+  filter:blur(var(--reveal-blur,7px));
+  transition:
+    opacity var(--reveal-duration,.9s) var(--reveal-ease,cubic-bezier(.22,1,.36,1)) var(--reveal-delay,0ms),
+    transform var(--reveal-duration,.9s) var(--reveal-ease,cubic-bezier(.22,1,.36,1)) var(--reveal-delay,0ms),
+    filter calc(var(--reveal-duration,.9s) - .1s) ease var(--reveal-delay,0ms);
+  will-change:transform,opacity,filter
 }
 .motion-ready .reveal.is-visible {
   opacity:1;
-  translate:0 0
+  transform:translate3d(0,0,0) scale(1) rotateX(0) rotateY(0);
+  filter:blur(0)
+}
+.motion-ready .reveal-up {
+  --reveal-offset:28px;
+  --reveal-duration:.86s
+}
+.motion-ready .reveal-pop {
+  --reveal-offset:34px;
+  --reveal-scale:.9;
+  --reveal-rotate-x:8deg;
+  --reveal-duration:.92s;
+  --reveal-ease:cubic-bezier(.16,1,.3,1)
+}
+.motion-ready .reveal-slide-right {
+  --reveal-offset:0px;
+  --reveal-scale:1;
+  --reveal-rotate-y:-8deg;
+  transform:translate3d(-30px,0,0) scale(1) rotateY(-8deg);
+  --reveal-duration:.95s
+}
+.motion-ready .reveal-float {
+  --reveal-offset:40px;
+  --reveal-scale:.94;
+  --reveal-rotate-y:7deg;
+  --reveal-duration:1.05s
+}
+.motion-ready .reveal-zoom {
+  --reveal-offset:18px;
+  --reveal-scale:.84;
+  --reveal-duration:1s
 }
 .portrait-decoration {
   animation:portrait-drift 6s ease-in-out infinite
@@ -833,7 +890,8 @@ h1,h2,h3,p {
 @media(prefers-reduced-motion:reduce) {
   .motion-ready .reveal {
     opacity:1;
-    translate:none
+    transform:none;
+    filter:none
   }
   .portrait-decoration {
     animation:none
