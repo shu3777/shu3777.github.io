@@ -42,12 +42,24 @@
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (!reduceMotion && "IntersectionObserver" in window) {
-    const revealTargets = [
-      ...document.querySelectorAll(
-        ".hero-copy, .hero-aside, .section-heading, .prose, .facts, .section-intro, .interest-card, .empty-state, .project, .all-projects, .contact-inner"
-      ),
-    ];
-    revealTargets.forEach((element) => element.classList.add("reveal"));
+    const revealTargets = new Set();
+    const registerReveal = (selector, effectClass, step = 70, initialDelay = 0) => {
+      document.querySelectorAll(selector).forEach((element, index) => {
+        element.classList.add("reveal", effectClass);
+        element.style.setProperty("--reveal-delay", `${initialDelay + index * step}ms`);
+        revealTargets.add(element);
+      });
+    };
+
+    registerReveal(".hero-copy", "reveal-pop", 0, 40);
+    registerReveal(".hero-aside", "reveal-float", 0, 140);
+    registerReveal(".section-heading", "reveal-slide-right", 80);
+    registerReveal(".prose, .facts, .section-intro", "reveal-up", 90);
+    registerReveal(".interest-card", "reveal-pop", 90, 70);
+    registerReveal(".empty-state, .contact-inner", "reveal-zoom", 0, 90);
+    registerReveal(".project", "reveal-pop", 80, 60);
+    registerReveal(".all-projects", "reveal-up", 0, 120);
+
     document.documentElement.classList.add("motion-ready");
 
     const observer = new IntersectionObserver(
@@ -59,9 +71,9 @@
           }
         });
       },
-      { threshold: 0.08, rootMargin: "0px 0px -5% 0px" }
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
     );
-    revealTargets.forEach((element) => observer.observe(element));
+    [...revealTargets].forEach((element) => observer.observe(element));
   }
 
   if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
